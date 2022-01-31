@@ -1,6 +1,8 @@
 class SaleController < ApplicationController
     def create
-        saled = Sale.create!(sales_params)
+        b = session[:user_id]
+        c = Seller.find_by(user_id: b)
+        saled = Sale.create!(seller_id: c.id, item_id: sales_params[:item_id], bid: sales_params[:bid], starting_bid: sales_params[:starting_bid], bid_time: sales_params[:bid_time], bid_length: sales_params[:bid_length])
         render json: saled, status: 201
     end
     def index

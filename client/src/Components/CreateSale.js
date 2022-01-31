@@ -69,7 +69,6 @@ function CreateSale(){
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    seller_id: 1, 
                     item_id: r.id,
                     bid: 0,
                     starting_bid: startingBid,
