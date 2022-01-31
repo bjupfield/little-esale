@@ -28,7 +28,7 @@ function Browse({c = false}){
         }
     }, [])
     return <div>
-        <Header/>
+        { !c ? <Header/> : ""}
         {sales.map((c)=>(
             <BrowseSales sale={c}/>
         ))}
