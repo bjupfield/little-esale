@@ -113,7 +113,7 @@ function DisplaySale(){
         <div>{bid >= startingBid ? `Bidding By ${highestBidder} for : ${bid}`: `Starting Price at: ${startingBid}`}</div>
         {isSeller ? "" : 
         <div>
-            {activate ? 
+            {activate && bidLength ? 
             <div>
                 <div style={{float: "right", width: "2px"}}><button onClick={()=>buttonClick()}>NoBid</button></div>
                 <ul style={{listStyleType: "none"}}>
