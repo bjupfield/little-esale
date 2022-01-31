@@ -20,7 +20,6 @@ function App() {
     <div style={{width:"100%", height:"500px"}}>
       <BrowserRouter>
           <Routes>
-            <Route path="/" element = {<div>DOasdasasdasddsfadsasOO IT</div>}></Route>
             <Route path="/sale" element = {<CreateSale/>}>
             </Route>
             <Route path="/sale/:id" element={<DisplaySale/>}>
