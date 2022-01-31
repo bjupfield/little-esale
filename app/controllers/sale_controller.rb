@@ -54,7 +54,7 @@ class SaleController < ApplicationController
     def userSales
         b = Seller.find_by!(user_id: session[:user_id])
         sales = Sale.where(seller_id: b).limit(30)
-        render json: sales, status 201
+        render json: sales, status: 201
     private
     def sales_params
         params.permit(:seller_id, :item_id, :bid, :starting_bid, :bid_time, :bid_length)
