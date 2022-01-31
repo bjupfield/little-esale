@@ -92,11 +92,23 @@ function DisplaySale(){
             setReload(!reload)
         })
     }
-    console.log(bid)
+    const de = new Date()
+    const currTime = parseFloat(de.getFullYear().toString() + (de.getMonth().toString()[1] ? de.getMonth().toString() : `0${de.getMonth().toString()}`) + (de.getDate().toString()[1] ? de.getDate().toString() : `0${de.getDate().toString()}`) + (de.getHours().toString()[1] ? de.getHours().toString() : `0${de.getHours().toString()}`) + "." + (de.getMinutes().toString()[1] ? de.getMinutes().toString() : `0${de.getMilliseconds().toString()}`))
+    let bidLength = (sale.bid_time <= currTime && sale.bid_time + sale.bid_length <= currTime) ? sale.bid_length + sale.bid_time - currTime : false;
+    if(bidLength){
+        const theId = setInterval(() => {
+            --bidLength
+            if(!bidLength){
+                clearInterval(theId);
+            }
+        }, 1000);
+    }
+    const parsingStart = sale.bid_time.toString()
+    const parsedDate = `${parsingStart.slice(6,8)}/${parsingStart.slice(4, 6)}/${parsingStart.slice(0,4)}  ${parsingStart.slice(8,10)}:${parsingStart.slice(11,13)}`;
     return <div>
         <Header/>
         <div>{isSeller ? "Your Sale" : sellerName}</div>
-        <div>Started At{bidTime}</div>
+        <div>{currTime >= sale.bid_time?  (!bidLength ? "Bidding For this Item has Ended" : bidLength)  : "Bidding Begins At: " +parsedDate}</div>
         <img src={itemImage} alt={itemName}/>
         <div>{bid >= startingBid ? `Bidding By ${highestBidder} for : ${bid}`: `Starting Price at: ${startingBid}`}</div>
         {isSeller ? "" : 
