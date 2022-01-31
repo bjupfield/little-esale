@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   get "/sellermatchuser/:id", to: "seller#sellermatchuser"
   get "/userbysale/:id", to: "user#userbysale"
   get "/salesUser", to: "sale#saleUser"
+  get "/userSales", to: "sale#userSales"
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

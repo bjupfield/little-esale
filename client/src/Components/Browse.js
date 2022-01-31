@@ -3,14 +3,29 @@ import { useState } from "react";
 import BrowseSales from "./BrowseSales";
 import Header from "./Header";
 
-function Browse(){
+function Browse({c = false}){
     const [sales, setSales] = useState([]);
     useEffect(()=>{
-        fetch(`https://little-esale.herokuapp.com/salesUser`)
+        if(c === false){
+        fetch(`https://little-esale.herokuapp.com/salesUser`, {
+            method: "GET",
+            credentials: "include"
+        })
         .then(r=>r.json())
         .then(r=>{
             setSales(r)
         })
+        }
+        else{
+        fetch(`https://little-esale.herokuapp.com/userSales`, {
+            method: "GET",
+            credentials: "include"
+        })
+        .then(r=>r.json())
+        .then(r=>{
+            setSales(r)
+        })
+        }
     }, [])
     return <div>
         <Header/>
